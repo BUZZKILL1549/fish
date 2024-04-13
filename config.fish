@@ -8,6 +8,12 @@ alias sql='mysql -u root -p'
 alias fish-conf='nvim ~/.config/fish/config.fish'
 alias fish-src='source ~/.config/fish/config.fish'
 
+# Git aliases
+alias gclone='gh repo clone'
+alias gadd='git add'
+alias gcommit='git commit -am'
+alias gpush='git push -u origin master'
+
 # Functions
 function update
     sudo apt-get update -y
