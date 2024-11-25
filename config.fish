@@ -18,24 +18,23 @@ alias runc='cargo run'
 
 # functions
 function update -d "Updates system"
-	sudo dnf update -y
-end
-
-function upgrade -d "Upgrades system"
-	sudo dnf upgrade -y
+  sudo pacman -Syyu
 end
 
 function download -a package -d "Installs package"
-	sudo dnf install $package
-	if test $status = 1
-		return "Package not found."
-	end
+	sudo pacman -S $package
+  if test $status = 1
+	  yay -S $package
+    if test $status = 1
+      return "Package not found."
+    end
+  end
 end
 
 function delete -d "Deletes package"
-	sudo dnf remove $argv
+  sudo pacman -R $argv
 end
 
 function search -d "Searches for package"
-	dnf search $argv
+  pacman -Ss $argv
 end
