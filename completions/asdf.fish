@@ -1,0 +1,1 @@
+/home/buzzkill/.asdf/completions/asdf.fish
