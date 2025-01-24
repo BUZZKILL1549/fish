@@ -3,8 +3,8 @@ if status is-interactive
 end
 
 # sources
-source ~/.asdf/asdf.fish
-set -gx PATH $PATH ~/Documents/Projects/flutter/dev/flutter/bin
+#source ~/.asdf/asdf.fish
+#set -gx PATH $PATH ~/Documents/Projects/flutter/dev/flutter/bin
 
 # general aliases
 alias ll='ls -la'
@@ -36,6 +36,7 @@ function aconda -d "Activates conda environment"
 end
 
 
+# This shit needs a little more fiddling
 #function cd -d "Changes directory with automatic env activation" --wraps=cd
 #builtin cd $argv
 
@@ -53,28 +54,23 @@ end
 
 # functions
 function update -d "Updates system"
-    sudo dnf update -y
-end
-
-function upgrade -d "Upgrades system"
-    sudo dnf upgrade -y
+    sudo pacman -Syu
 end
 
 function download -a package -d "Installs package"
-    sudo dnf install $package
+    sudo pacman -S $package
     if test $status = 1
-        return "Package not found."
+        yay -S $package
+        if test $status = 1
+            return "Package not found"
+        end
     end
 end
 
-function delete -d "Deletes package"
-    sudo dnf remove $argv
+function delete -a package -d "Deletes package"
+    sudo pacman -R $package
 end
 
-function search -d "Searches for package"
-    dnf search $argv
+function search -a package -d "Searches for package"
+    yay -Ss $package
 end
-
-# Created by `pipx` on 2024-12-12 13:24:18
-set PATH $PATH /home/buzzkill/.local/bin
-set -x PATH /usr/local/cuda-12.6/bin $PATH
