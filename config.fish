@@ -6,6 +6,9 @@ end
 #source ~/.asdf/asdf.fish
 #set -gx PATH $PATH ~/Documents/Projects/flutter/dev/flutter/bin
 
+# removes the welcome message
+set fish_greeting
+
 # general aliases
 alias ll='ls -la'
 alias ff='fastfetch'
@@ -35,8 +38,6 @@ function aconda -d "Activates conda environment"
     conda activate $argv
 end
 
-
-# This shit needs a little more fiddling
 #function cd -d "Changes directory with automatic env activation" --wraps=cd
 #builtin cd $argv
 
@@ -71,6 +72,14 @@ function delete -a package -d "Deletes package"
     sudo pacman -R $package
 end
 
+function autoremove -a package -d "Deletes package and all its dependencies"
+    sudo pacman -Rns $package
+end
+
 function search -a package -d "Searches for package"
     yay -Ss $package
+end
+
+function isearch -a package -d "Searches the system for an installed package"
+    yay -Qi $package
 end
