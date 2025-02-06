@@ -55,31 +55,21 @@ end
 
 # functions
 function update -d "Updates system"
-    sudo pacman -Syu
+    nix-env -u
+end
+
+function dupdate -d "Updates system debian packages"
+    sudo apt update
+end
+
+function dupgrade -d "Upgrades system debian packages"
+    sudo apt upgrade
 end
 
 function download -a package -d "Installs package"
-    sudo pacman -S $package
-    if test $status = 1
-        yay -S $package
-        if test $status = 1
-            return "Package not found"
-        end
-    end
+    nix-env -iA nixpkgs.$package
 end
 
 function delete -a package -d "Deletes package"
-    sudo pacman -R $package
-end
-
-function autoremove -a package -d "Deletes package and all its dependencies"
-    sudo pacman -Rns $package
-end
-
-function search -a package -d "Searches for package"
-    yay -Ss $package
-end
-
-function isearch -a package -d "Searches the system for an installed package"
-    yay -Qi $package
+    nix-env -e $package
 end
