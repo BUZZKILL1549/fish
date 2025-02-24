@@ -4,7 +4,7 @@ end
 
 # sources
 #source ~/.asdf/asdf.fish
-#set -gx PATH $PATH ~/Documents/Projects/flutter/dev/flutter/bin
+#set -gx PATH $PATH ~/dev/flutter/bin
 
 # removes the welcome message
 set fish_greeting
@@ -64,6 +64,10 @@ end
 
 function dupgrade -d "Upgrades system debian packages"
     sudo apt upgrade
+end
+
+function search -d "Search debian packages"
+    apt search $package
 end
 
 function download -a package -d "Installs package"
