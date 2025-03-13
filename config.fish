@@ -5,6 +5,7 @@ end
 # sources
 #source ~/.asdf/asdf.fish
 #set -gx PATH $PATH ~/Documents/Projects/flutter/dev/flutter/bin
+pyenv init - fish | source
 
 # removes the welcome message
 set fish_greeting
@@ -14,11 +15,14 @@ alias ll='ls -la'
 alias ff='fastfetch'
 alias fish-conf='nvim ~/.config/fish/config.fish'
 alias fish-src='source ~/.config/fish/config.fish'
+alias hypredit='nvim ~/.config/hypr/hyprland.conf'
+alias wayedit='nvim ~/.config/waybar/config.json'
 
 # git aliases
 alias add='git add .'
 alias commit='git commit -am'
 alias push='git push'
+alias pull='git pull'
 alias stag='git status'
 alias glog='git log'
 
@@ -53,6 +57,11 @@ end
 #end
 #end
 
+# This does the automatic virtualenv initialization
+# only issue is, it needs the pyenv-virtualenv thing installed
+# but it seems pretty cool for version management so yee
+status --is-interactive; and pyenv virtualenv-init - | source
+
 # functions
 function update -d "Updates system"
     sudo pacman -Syu
@@ -83,3 +92,6 @@ end
 function isearch -a package -d "Searches the system for an installed package"
     yay -Qi $package
 end
+
+# Created by `pipx` on 2025-03-09 18:15:41
+set PATH $PATH /home/buzzkill/.local/bin
