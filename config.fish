@@ -7,16 +7,22 @@ end
 #set -gx PATH $PATH ~/Documents/Projects/flutter/dev/flutter/bin
 pyenv init - fish | source
 
+# startup shit
 # removes the welcome message
 set fish_greeting
+clear && myfetch -c 8 -C " █"
+starship init fish | source
 
 # general aliases
-alias ll='ls -la'
+alias ls='eza --icons'
+alias ll='eza -l -F -a --icons'
+alias ltree='eza -l -T --icons'
 alias ff='fastfetch'
 alias fish-conf='nvim ~/.config/fish/config.fish'
 alias fish-src='source ~/.config/fish/config.fish'
 alias hypredit='nvim ~/.config/hypr/hyprland.conf'
 alias wayedit='nvim ~/.config/waybar/config.json'
+alias untar='tar -xf'
 
 # git aliases
 alias add='git add .'
@@ -60,7 +66,7 @@ end
 # This does the automatic virtualenv initialization
 # only issue is, it needs the pyenv-virtualenv thing installed
 # but it seems pretty cool for version management so yee
-status --is-interactive; and pyenv virtualenv-init - | source
+#status --is-interactive; and pyenv virtualenv-init - | source
 
 # functions
 function update -d "Updates system"
