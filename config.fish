@@ -9,8 +9,11 @@ end
 # removes the welcome message
 set fish_greeting
 
+starship init fish | source
+
 # general aliases
-alias ll='ls -la'
+alias ls='eza --icons'
+alias ll='eza --icons -l'
 alias ff='fastfetch'
 alias fish-conf='nvim ~/.config/fish/config.fish'
 alias fish-src='source ~/.config/fish/config.fish'
@@ -33,10 +36,10 @@ function runc -a ofile ifile -d "Compiles C"
     gcc -o $ofile $ifile
 end
 
-function aconda -d "Activates conda environment"
-    eval "$(/home/buzzkill/anaconda3/bin/conda shell.fish hook)"
-    conda activate $argv
-end
+#function aconda -d "Activates conda environment"
+#    eval "$(/home/buzzkill/anaconda3/bin/conda shell.fish hook)"
+#    conda activate $argv
+#end
 
 #function cd -d "Changes directory with automatic env activation" --wraps=cd
 #builtin cd $argv
@@ -66,7 +69,7 @@ function dupgrade -d "Upgrades system debian packages"
     sudo apt upgrade
 end
 
-function search -d "Search debian packages"
+function search -a package -d "Search debian packages"
     apt search $package
 end
 
