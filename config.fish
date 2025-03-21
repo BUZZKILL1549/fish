@@ -4,19 +4,23 @@ end
 
 # sources
 #source ~/.asdf/asdf.fish
-#set -gx PATH $PATH ~/dev/flutter/bin
+set -gx PATH $PATH ~/flutterdev/flutter/bin
 
 # removes the welcome message
 set fish_greeting
 
 starship init fish | source
 
+# fixes the sudo issue with nix-env
+alias sudo='sudo --preserve-env=PATH env'
+
 # general aliases
 alias ls='eza --icons'
-alias ll='eza --icons -l'
+alias ll='eza --icons -l -a'
 alias ff='fastfetch'
 alias fish-conf='nvim ~/.config/fish/config.fish'
 alias fish-src='source ~/.config/fish/config.fish'
+alias untar='tar -xf'
 
 # git aliases
 alias add='git add .'
@@ -27,8 +31,8 @@ alias glog='git log'
 
 # programming aliases
 alias runp='python'
-alias cr-env='python -m venv .venv'
-alias src-env='source .venv/bin/activate.fish'
+alias crenv='python -m venv .venv'
+alias srcenv='source .venv/bin/activate.fish'
 alias runcr='cargo run'
 alias runr='ruby'
 
