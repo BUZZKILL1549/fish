@@ -45,6 +45,17 @@ end
 #    conda activate $argv
 #end
 
+function cd -d "Changes directory" 
+  if test (count $argv) -eq 1 && string match -qr '^[0-9]+$' $argv[1]
+    set -l num $argv[1]
+    for i in (seq $num)
+      builtin cd ..
+    end
+  else
+    builtin cd $argv
+  end
+end
+
 #function cd -d "Changes directory with automatic env activation" --wraps=cd
 #builtin cd $argv
 
