@@ -5,7 +5,7 @@ end
 # sources
 #source ~/.asdf/asdf.fish
 #set -gx PATH $PATH ~/Documents/Projects/flutter/dev/flutter/bin
-pyenv init - fish | source
+#pyenv init - fish | source
 
 # startup shit
 # removes the welcome message
@@ -23,6 +23,7 @@ alias fish-src='source ~/.config/fish/config.fish'
 alias hypredit='nvim ~/.config/hypr/hyprland.conf'
 alias wayedit='nvim ~/.config/waybar/config.json'
 alias untar='tar -xf'
+alias pipes='pipes-rs -b true -r 1.0 -k heavy -p 20 -i true -t 0.3'
 
 # git aliases
 alias add='git add .'
@@ -43,9 +44,25 @@ function runc -a ofile ifile -d "Compiles C"
     gcc -o $ofile $ifile
 end
 
+function runcpp -a ofile ifile -d "Compiles C++"
+    g++ -o $ofile $ifile
+    ./$ofile
+end
+
 function aconda -d "Activates conda environment"
     eval "$(/home/buzzkill/anaconda3/bin/conda shell.fish hook)"
     conda activate $argv
+end
+
+function cd -d "Changes directory"
+    if test (count $argv) -eq 1 && string match -qr '^[0-9]+$' $argv[1]
+        set -l num $argv[1]
+        for i in (seq $num)
+            builtin cd ..
+        end
+    else
+        builtin cd $argv
+    end
 end
 
 #function cd -d "Changes directory with automatic env activation" --wraps=cd
